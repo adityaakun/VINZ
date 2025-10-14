@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fardan | VarShade</title>
+  <title>Dityya | VarShade</title>
   <!-- OG tags for link preview -->
-  <meta property="og:title" content="Fardan | VarShade" />
-  <meta property="og:description" content="Welcome to my portal. Explore my tools, APIs, and resources all in one place." />
+  <meta property="og:title" content="Dityya | VarShade" />
+  <meta property="og:description" content="Hi, I'm Dityya. Check out my social links, tools, and WhatsApp connections." />
   <meta property="og:image" content="https://via.placeholder.com/1200x630/000a1a/00D4AA?text=VarShade" /> <!-- Updated placeholder for navy bg -->
   <meta property="og:url" content="https://varshade.netlify.app" />
   <meta property="og:type" content="website" />
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Fardan | VarShade" />
-  <meta name="twitter:description" content="Welcome to my portal. Explore my tools, APIs, and resources all in one place." />
+  <meta name="twitter:title" content="Dityya | VarShade" />
+  <meta name="twitter:description" content="Hi, I'm Dityya. Check out my social links, tools, and WhatsApp connections." />
   <meta name="twitter:image" content="https://via.placeholder.com/1200x630/000a1a/00D4AA?text=VarShade" />
   <!-- Font & Icon -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -109,8 +109,9 @@
       padding: 1rem; margin: 2rem 0; box-shadow: var(--shadow); /* Reduced padding for mobile fit */
     }
     .cassette {   
-      width: 50px; height: 50px; border-radius: 8px; /* Slightly smaller like photos */
+      width: 60px; height: 60px; border-radius: 50%; /* Bulat seperti foto, sedikit lebih besar untuk fit */
       margin: 0 auto 0.8rem; display: block; animation: rotate 2s linear infinite paused;  
+      object-fit: cover; /* Pastikan gambar fill bulat tanpa distorsi */
     }
     @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     #cassette.playing { animation-play-state: running; }
@@ -192,29 +193,19 @@
   
   <!-- Main Content -->
   <main class="container">
-    <img src="https://img1.pixhost.to/images/7013/619072900_file.jpg" alt="Profile picture of Fardan" class="avatar" />
-    <h1>Fardan | VarShade</h1>
-    <p class="bio">Welcome to my portal. Explore my tools, APIs, and resources all in one place.</p>
+    <img src="https://img1.pixhost.to/images/7013/619072900_file.jpg" alt="Profile picture of Dityya" class="avatar" />
+    <h1>Dityya</h1>
+    <p class="bio">Hi, I'm Dityya. Check out my social links, tools, and WhatsApp connections.</p>
     
     <!-- Social Media Section -->
     <div class="category">
       <h2><i class="fas fa-glasses"></i> Social Media</h2>
       <div class="link-list">
-        <a href="https://www.instagram.com/fardannfm" class="link-button"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://youtube.com/@FarXyz-ID" class="link-button"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://twitter.com/FarXyz-ID" class="link-button"><i class="fab fa-twitter"></i> Twitter</a>
-        <a href="https://tiktok.com/@var_prikitiw" class="link-button"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a href="https://t.me/kecoagoreng1" class="link-button"><i class="fab fa-telegram"></i> Telegram</a>
-        <a href="https://www.facebook.com/" class="link-button"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://www.instagram.com/anandaaditya498" class="link-button"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://tiktok.com/@aditya.ananda45" class="link-button"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a href="https://t.me/vinzxxc" class="link-button"><i class="fab fa-telegram"></i> Telegram</a>
         <a href="https://threads.net/@" class="link-button" data-note="soon"><i class="fab fa-threads"></i> Threads</a>
         <a href="https://linkedin.com/in/" class="link-button" data-note="soon"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      </div>
-    </div>
-
-    <div class="category">
-      <h2><i class="fas fa-code"></i> VarShade APIs</h2>
-      <div class="link-list">
-        <a href="https://varshade-api.vercel.app" class="link-button"><i class="fas fa-link"></i> Rest API (Free)</a>
       </div>
     </div>
 
@@ -247,7 +238,7 @@
     <!-- Music Player -->
     <div class="music-player">
       <img src="https://img1.pixhost.to/images/6913/617698551_upload.jpg" alt="Cassette tape for music player" class="cassette" id="cassette" />
-      <div class="player-info" id="music-info">🎧 Now Playing</div>
+      <div class="player-info" id="music-info">🎧 No music playing</div>
       <div class="progress-container">
         <div class="progress-bar">
           <div class="progress" id="progress"></div>
@@ -276,8 +267,8 @@
   <footer>
     <div class="footer-links">
       <a href="https://wa.me/6283891813151" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.instagram.com/fardannfm" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://t.me/FarXyz_ID" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.instagram.com/anandaaditya498" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://t.me/vinzxxc" target="_blank"><i class="fab fa-telegram"></i></a>
     </div>
     <p>&copy; 2025 VarShade. All rights reserved.</p>
   </footer>
@@ -301,7 +292,7 @@
       navbarMenu.classList.toggle('active');
     });
 
-    // Music Player - Updated playlist title to exact screenshot match
+    // Music Player - Updated to match states: initial "No music", play "Now Playing", pause "Paused"
     const audio = document.getElementById('audio');
     const playBtn = document.getElementById('playBtn');
     const prevBtn = document.getElementById('prevBtn');
@@ -315,44 +306,65 @@
     const musicToggle = document.getElementById('musicToggle');
 
     const playlist = [
-      { title: 'The Cut Always Bleeds WILDFLOWER', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' }, // Exact match
+      { title: 'The Cut Always Bleeds WILDFLOWER', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
       { title: 'Track 2', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
       { title: 'Track 3', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' }
     ];
     let currentTrack = 0;
     let isPlaying = false;
+    let isLoaded = false; // Track if first load has happened
 
-    // Load Track
+    // Initial state: No music
+    musicInfo.textContent = '🎧 No music playing';
+    progress.style.width = '0%';
+    currentTimeEl.textContent = '0:00';
+    durationEl.textContent = '0:00';
+
+    // Load Track (only when first play)
     function loadTrack(index) {
       audio.src = playlist[index].src;
       musicInfo.textContent = `🎧 Now Playing: ${playlist[index].title}`;
       audio.load();
       currentTrack = index;
+      isLoaded = true;
       if (isPlaying) audio.play();
     }
-    loadTrack(0);
 
-    // Play/Pause
+    // Play/Pause - Handle states like photos
     playBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        audio.pause();
-        playBtn.innerHTML = '<i class="fas fa-play"></i>';
-        cassette.classList.remove('playing');
-      } else {
-        audio.play().catch(() => {}); // Handle audio policy errors on mobile
-        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      if (!isLoaded) {
+        loadTrack(0); // Load first track on first click
+        isPlaying = true;
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>'; // To pause icon
         cassette.classList.add('playing');
+        audio.play().catch(() => {});
+      } else if (isPlaying) {
+        audio.pause();
+        playBtn.innerHTML = '<i class="fas fa-play"></i>'; // Back to play
+        cassette.classList.remove('playing');
+        musicInfo.textContent = '🎧 Playback paused'; // Paused state like photo 3
+      } else {
+        audio.play().catch(() => {});
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>'; // To pause
+        cassette.classList.add('playing');
+        musicInfo.textContent = `🎧 Now Playing: ${playlist[currentTrack].title}`; // Back to playing
       }
       isPlaying = !isPlaying;
     });
 
-    // Next/Prev
-    nextBtn.addEventListener('click', () => { loadTrack((currentTrack + 1) % playlist.length); });
-    prevBtn.addEventListener('click', () => { loadTrack((currentTrack - 1 + playlist.length) % playlist.length); });
+    // Next/Prev - Reload track
+    nextBtn.addEventListener('click', () => { 
+      loadTrack((currentTrack + 1) % playlist.length); 
+      if (!isPlaying) musicInfo.textContent = '🎧 No music playing'; // If paused, show paused/no after switch
+    });
+    prevBtn.addEventListener('click', () => { 
+      loadTrack((currentTrack - 1 + playlist.length) % playlist.length); 
+      if (!isPlaying) musicInfo.textContent = '🎧 No music playing';
+    });
 
     // Progress Bar
     audio.addEventListener('timeupdate', () => {
-      if (audio.duration) {
+      if (audio.duration && isLoaded) {
         const progressPercent = (audio.currentTime / audio.duration) * 100;
         progress.style.width = progressPercent + '%';
         currentTimeEl.textContent = formatTime(audio.currentTime);
@@ -360,8 +372,20 @@
       }
     });
 
+    // Reset on end
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
+      playBtn.innerHTML = '<i class="fas fa-play"></i>';
+      cassette.classList.remove('playing');
+      progress.style.width = '0%';
+      currentTimeEl.textContent = '0:00';
+      musicInfo.textContent = '🎧 Playback paused';
+    });
+
     // Speed Control
-    speedControl.addEventListener('change', (e) => { audio.playbackRate = parseFloat(e.target.value); });
+    speedControl.addEventListener('change', (e) => { 
+      if (isLoaded) audio.playbackRate = parseFloat(e.target.value); 
+    });
 
     // Format Time
     function formatTime(seconds) {
@@ -372,8 +396,10 @@
 
     // Music Toggle (Mute/Unmute)
     musicToggle.addEventListener('click', () => {
-      audio.muted = !audio.muted;
-      musicToggle.querySelector('i').className = audio.muted ? 'fas fa-volume-mute' : 'fas fa-music';
+      if (isLoaded) {
+        audio.muted = !audio.muted;
+        musicToggle.querySelector('i').className = audio.muted ? 'fas fa-volume-mute' : 'fas fa-music';
+      }
     });
 
     // Fixed Clock for Indonesian Time Zones (WIB, WITA, WIT) - Accurate UTC-based
