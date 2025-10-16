@@ -19,8 +19,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
   <style>
     /* CSS Variables for Themes - Adjusted for navy-blue photo match */
     :root {
@@ -98,8 +96,9 @@
     }
     #likeButton:hover {
       background: #00a67a;
-
-   /* Categories - Cyan outlines and roundness like photos */
+    } /* Categories - Cyan outlines and roundness like photos */
+    
+    /* Categories - Cyan outlines and roundness like photos */
     .category { margin-bottom: 2rem; text-align: left; }
     .category h2 {   
       display: flex; align-items: center; gap: 0.5rem;   
@@ -217,8 +216,8 @@
     <p class="bio">Hi, I'm Dityya. Check out my social links, tools, and WhatsApp connections.</p>
 
     <div id="like-section">
-  <button id="likeButton">Like</button>
-  <span id="likeCount">0</span> likes
+      <button id="likeButton">Like</button>
+      <span id="likeCount">0</span> likes
     </div>
     
     <!-- Social Media Section -->
@@ -241,7 +240,6 @@
     </div>
     
     <!-- WhatsApp Section -->
-    <!-- WhatsApp Section -->
     <div class="category">
       <h2><i class="fab fa-whatsapp"></i> WhatsApp</h2>
       <div class="link-list">
@@ -256,7 +254,6 @@
         </a>
       </div>
     </div>
-
     <!-- Music Player -->
     <div class="music-player">
       <img src="https://img1.pixhost.to/images/6913/617698551_upload.jpg" alt="Cassette tape for music player" class="cassette" id="cassette" />
