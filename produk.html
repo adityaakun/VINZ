@@ -1,748 +1,115 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Vinz Space | Produk</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root{
-  --bg-page:#0f0814;
-  --bg-card:rgba(26,15,36,.86);
-  --bg-card-top:rgba(17,9,32,.88);
-  --accent:#c084fc;
-  --accent-deep:#9333ea;
-  --accent-soft:rgba(192,132,252,.14);
-  --border:rgba(192,132,252,.16);
-  --border-hi:rgba(192,132,252,.38);
-  --text:#f0e6ff;
-  --text-muted:#a78dc0;
-  --text-lo:#604f78;
-  --ease:cubic-bezier(.16,1,.3,1);
-}
-
-*,*::before,*::after{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  min-height:100%;
-  background:#0f0814;
-}
-
-body{
-  font-family:'DM Sans',sans-serif;
-  min-height:100vh;
-  color:var(--text);
-
-  /* BACKGROUND IMAGE — dipakai ke seluruh halaman */
-  background:
-    linear-gradient(rgba(10,4,16,.58),rgba(10,4,16,.72)),
-    url('https://files.catbox.moe/a373tc.jpg') center center / cover fixed no-repeat;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-button{
-  background:none;
-  border:none;
-  cursor:pointer;
-  font:inherit;
-  color:inherit;
-}
-
-/* CONTENT */
-.main{
-  min-height:100vh;
-}
-
-.content{
-  width:100%;
-  max-width:1100px;
-  margin:0 auto;
-  padding:70px 24px 125px;
-}
-
-.page-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(34px,7vw,58px);
-  font-weight:800;
-  text-align:center;
-  margin-bottom:10px;
-  color:#f5eaff;
-  text-shadow:0 5px 30px rgba(0,0,0,.45);
-}
-
-.page-sub{
-  text-align:center;
-  color:#c4a9dc;
-  font-size:15px;
-  margin-bottom:42px;
-}
-
-/* PRODUCT GRID */
-.cards-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;
-}
-
-.card{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:22px;
-  overflow:hidden;
-  transition:all .4s var(--ease);
-  position:relative;
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  box-shadow:0 18px 45px rgba(0,0,0,.28);
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  border-color:var(--border-hi);
-  box-shadow:
-    0 24px 48px rgba(0,0,0,.48),
-    0 0 0 1px var(--accent-soft);
-}
-
-/* PRODUCT IMAGE AREA */
-.card-img-well{
-  height:190px;
-  background:var(--bg-card-top);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.card-img-well::after{
-  content:'';
-  position:absolute;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  background:rgba(168,85,247,.12);
-  filter:blur(45px);
-}
-
-.card-img-well svg{
-  width:62px;
-  height:62px;
-  color:var(--accent);
-  opacity:.82;
-  position:relative;
-  z-index:1;
-}
-
-.card-badge{
-  position:absolute;
-  top:14px;
-  right:14px;
-  font-size:10px;
-  font-weight:600;
-  padding:4px 11px;
-  border-radius:20px;
-  z-index:2;
-}
-
-.badge-sale{
-  background:rgba(245,158,11,.18);
-  color:#f59e0b;
-  border:1px solid rgba(245,158,11,.3);
-}
-
-.badge-new{
-  background:rgba(52,211,153,.15);
-  color:#34d399;
-  border:1px solid rgba(52,211,153,.3);
-}
-
-.badge-limited{
-  background:rgba(239,68,68,.15);
-  color:#f87171;
-  border:1px solid rgba(239,68,68,.3);
-}
-
-.card-body{
-  padding:22px;
-  background:rgba(26,15,36,.82);
-}
-
-.card-cat{
-  font-size:11px;
-  font-weight:600;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:#76608e;
-  margin-bottom:7px;
-}
-
-.card-title{
-  font-size:20px;
-  font-weight:600;
-  margin-bottom:9px;
-  color:var(--text);
-}
-
-.card-rating{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  margin-bottom:12px;
-}
-
-.card-rating .stars{
-  color:#fbbf24;
-  font-size:13px;
-}
-
-.card-rating .count{
-  font-size:12px;
-  color:var(--text-muted);
-}
-
-.card-desc{
-  font-size:13px;
-  color:var(--text-muted);
-  line-height:1.55;
-  margin-bottom:17px;
-}
-
-.card-price{
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:17px;
-}
-
-.price-now{
-  font-size:26px;
-  font-weight:700;
-  color:#fff;
-}
-
-.price-was{
-  font-size:14px;
-  color:#604f78;
-  text-decoration:line-through;
-}
-
-.price-off{
-  font-size:11px;
-  font-weight:600;
-  padding:3px 9px;
-  border-radius:20px;
-  background:rgba(245,158,11,.15);
-  color:#f59e0b;
-}
-
-/* WHATSAPP BUTTON */
-.card-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  width:100%;
-  padding:13px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#c084fc,#9333ea);
-  color:#fff;
-  font-size:14px;
-  font-weight:700;
-  transition:all .3s;
-  box-shadow:0 8px 22px rgba(147,51,234,.22);
-}
-
-.card-btn:hover{
-  filter:brightness(1.1);
-  transform:translateY(-2px);
-  box-shadow:0 12px 28px rgba(147,51,234,.35);
-}
-
-.card-btn i{
-  font-size:18px;
-}
-
-.card-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px 13px;
-  margin-top:14px;
-  font-size:11px;
-  color:#665477;
-}
-
-.card-meta span{
-  display:flex;
-  align-items:center;
-  gap:4px;
-}
-
-/* LIQUID BOTTOM NAV */
-.liquid-wrapper{
-  position:fixed;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:320px;
-  z-index:950;
-  padding:0 12px;
-}
-
-.liquid-nav{
-  position:relative;
-  width:100%;
-  height:64px;
-  background:rgba(43,27,74,.93);
-  border-radius:20px;
-  box-shadow:0 16px 40px rgba(0,0,0,.5);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.05);
-}
-
-.notch-layer,
-.indicator-layer{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-}
-
-.notch-layer{z-index:10}
-.indicator-layer{z-index:20}
-
-.notch-track,
-.indicator-track{
-  position:absolute;
-  top:0;
-  left:0;
-  height:100%;
-  transition:
-    transform .45s cubic-bezier(.5,1.25,.35,1),
-    width .45s ease;
-}
-
-.notch-svg{
-  position:absolute;
-  top:-1px;
-  left:50%;
-  transform:translateX(-50%);
-  width:90px;
-  height:28px;
-}
-
-.white-circle{
-  position:absolute;
-  top:-16px;
-  left:50%;
-  transform:translateX(-50%);
-  width:48px;
-  height:48px;
-  background:#fff;
-  border-radius:50%;
-  box-shadow:0 4px 12px rgba(0,0,0,.25);
-}
-
-.nav-list{
-  position:relative;
-  display:flex;
-  width:100%;
-  height:100%;
-  list-style:none;
-  z-index:30;
-}
-
-.nav-item{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.nav-btn{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:2px;
-  width:100%;
-  height:100%;
-  color:rgba(255,255,255,.55);
-  transition:color .3s;
-}
-
-.nav-btn .icon{
-  width:22px;
-  height:22px;
-}
-
-.nav-btn .icon svg{
-  width:100%;
-  height:100%;
-  stroke:currentColor;
-  fill:none;
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.nav-btn .label{
-  font-size:10px;
-  font-weight:500;
-}
-
-.nav-item.active .nav-btn{
-  color:#fff;
-}
-
-.nav-item.active .nav-btn .icon{
-  color:#2b1b4a;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px 24px 105px;
-  color:#a78dc0;
-  font-size:13px;
-  border-top:1px solid rgba(192,132,252,.12);
-  background:rgba(10,4,16,.32);
-}
-
-/* MOBILE */
-@media(max-width:600px){
-  body{
-    background-attachment:scroll;
-  }
-
-  .content{
-    padding:55px 16px 115px;
-  }
-
-  .page-title{
-    font-size:42px;
-  }
-
-  .page-sub{
-    font-size:14px;
-    margin-bottom:34px;
-  }
-
-  .cards-grid{
-    grid-template-columns:1fr;
-    gap:22px;
-  }
-
-  .card{
-    border-radius:22px;
-  }
-
-  .card-img-well{
-    height:180px;
-  }
-
-  .card-body{
-    padding:21px;
-  }
-
-  .card-meta{
-    gap:9px 12px;
-  }
-}
-
-@media(min-width:601px){
-  .cards-grid .card{
-    min-height:100%;
-  }
-}
+:root{--bg:#0b0612;--card:#140d20;--card2:#1a1027;--purple:#b66cff;--purple2:#9132e9;--text:#f4ecff;--muted:#a993b9;--line:rgba(210,160,255,.14);--gold:#f6b51b;--nav:#2b1b4a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(circle at 50% -10%,rgba(177,91,255,.13),transparent 35%),linear-gradient(180deg,#0b0612,#100719 55%,#0a0510)}
+a{text-decoration:none;color:inherit}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+.topbar{display:none}
+.main{min-height:100vh;padding:48px 18px 125px}
+.content{width:min(900px,100%);margin:auto}
+.hero{text-align:center;padding:18px 0 38px}
+.title{font-family:'Syne',sans-serif;font-size:clamp(42px,10vw,72px);line-height:1;font-weight:800;letter-spacing:-2px;color:#f5eaff;margin-bottom:18px}
+.subtitle{color:#a993b9;font-size:clamp(15px,3vw,19px)}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.product-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,#0f081a,#180e25);box-shadow:0 20px 60px rgba(0,0,0,.28);transition:.3s}
+.product-card:hover{transform:translateY(-5px);border-color:rgba(182,108,255,.35);box-shadow:0 24px 70px rgba(125,45,210,.18)}
+.product-image{height:260px;display:flex;align-items:center;justify-content:center;background:#10081b;border-bottom:1px solid rgba(255,255,255,.04);overflow:hidden}
+.product-image img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{position:absolute;right:14px;top:14px;padding:7px 13px;border-radius:30px;background:rgba(83,47,10,.9);color:#ffb51b;border:1px solid rgba(246,181,27,.45);font-weight:700;font-size:13px;z-index:2}
+.badge.new{background:rgba(20,80,65,.8);color:#35d8a0;border-color:rgba(49,213,155,.35)}
+.product-body{padding:25px}
+.category{color:#75617f;font-weight:700;letter-spacing:1.5px;font-size:12px;margin-bottom:8px}
+.product-name{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:12px}
+.rating{display:flex;align-items:center;gap:7px;margin-bottom:14px}
+.stars{color:var(--gold);letter-spacing:1px}.rating-text{color:#a28eaf;font-size:14px}
+.description{color:#a895b7;line-height:1.6;font-size:14px;min-height:68px}
+.price-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:18px 0}
+.price{font-family:'Syne',sans-serif;font-size:32px;font-weight:800}
+.old-price{color:#65566c;text-decoration:line-through}
+.save{padding:6px 11px;border-radius:20px;background:rgba(246,181,27,.13);color:#e7a817;font-weight:700;font-size:12px}
+.wa-btn{width:100%;height:58px;border-radius:17px;display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(100deg,#b66cff,#9132e9);color:#fff;font-size:18px;font-weight:700;box-shadow:0 10px 30px rgba(148,52,232,.25);transition:.25s}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 35px rgba(148,52,232,.4)}
+.features{display:flex;gap:14px;flex-wrap:wrap;margin-top:17px;color:#665771;font-size:13px}
+.features span{display:flex;align-items:center;gap:5px}
+.liquid-wrapper{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(320px,calc(100% - 34px));z-index:1000}
+.liquid-nav{position:relative;height:78px;background:var(--nav);border-radius:24px;box-shadow:0 18px 45px rgba(0,0,0,.55)}
+.nav-list{position:relative;z-index:30;display:flex;width:100%;height:100%;list-style:none}
+.nav-item{flex:1;display:flex;align-items:center;justify-content:center}
+.nav-btn{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:rgba(255,255,255,.58)}
+.nav-btn .icon{width:27px;height:27px}.nav-btn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.nav-btn .label{font-size:12px;font-weight:500}
+.nav-item.active .nav-btn{color:#fff}.nav-item.active .nav-btn .icon{color:#2b1b4a}
+.indicator{position:absolute;z-index:20;top:-28px;width:70px;height:70px;border-radius:50%;background:#fff;box-shadow:0 5px 18px rgba(0,0,0,.28);transition:left .45s cubic-bezier(.5,1.25,.35,1)}
+.notch{position:absolute;top:0;width:96px;height:26px;background:var(--nav);z-index:10;transition:left .45s cubic-bezier(.5,1.25,.35,1)}
+@media(max-width:700px){.main{padding:62px 14px 125px}.hero{padding-top:5px}.products{grid-template-columns:1fr}.product-image{height:250px}.product-body{padding:24px}}
+@media(min-width:701px){.products .product-card:first-child{grid-column:1/-1}.products .product-card:first-child .product-image{height:320px}}
 </style>
 </head>
-
 <body>
-
 <main class="main">
-  <div class="content">
+<div class="content">
+<section class="hero">
+<h1 class="title">Produk</h1>
+<p class="subtitle">Sesuai konsep Product Cards Feza Academy</p>
+</section>
+<section class="products">
 
-    <h1 class="page-title">Produk</h1>
-    <p class="page-sub">Sesuai konsep Product Cards Feza Academy</p>
+<article class="product-card">
+<span class="badge">−25%</span>
+<div class="product-image"><img src="https://files.catbox.moe/a373tc.jpg" alt="Wireless Keyboard"></div>
+<div class="product-body">
+<div class="category">KEYBOARDS</div>
+<h2 class="product-name">Wireless Keyboard</h2>
+<div class="rating"><span class="stars">★★★★☆</span><span class="rating-text">4.8 (2,340)</span></div>
+<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, neque nobis quibusdam quasi eaque.</p>
+<div class="price-row"><span class="price">$149</span><span class="old-price">$199</span><span class="save">Save $50</span></div>
+<a class="wa-btn" href="https://wa.me/6282219566685?text=Halo%20Vinz%2C%20saya%20tertarik%20dengan%20produk%20Wireless%20Keyboard" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>Pesan via WhatsApp</a>
+<div class="features"><span><i class="fas fa-truck"></i> Free Shipping</span><span><i class="fas fa-rotate-left"></i> 30-Day Returns</span><span><i class="fas fa-check"></i> In Stock</span></div>
+</div>
+</article>
 
-    <div class="cards-grid">
+<article class="product-card">
+<span class="badge new">NEW</span>
+<div class="product-image"><img src="https://files.catbox.moe/a373tc.jpg" alt="Vinz Space Access"></div>
+<div class="product-body">
+<div class="category">DIGITAL</div>
+<h2 class="product-name">Vinz Space Access</h2>
+<div class="rating"><span class="stars">★★★★★</span><span class="rating-text">5.0 (128)</span></div>
+<p class="description">Produk digital dengan tampilan premium dan akses cepat melalui Vinz Space.</p>
+<div class="price-row"><span class="price">$99</span><span class="old-price">$129</span><span class="save">Save $30</span></div>
+<a class="wa-btn" href="https://wa.me/6282219566685?text=Halo%20Vinz%2C%20saya%20tertarik%20dengan%20Vinz%20Space%20Access" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>Pesan via WhatsApp</a>
+<div class="features"><span><i class="fas fa-bolt"></i> Instant</span><span><i class="fas fa-shield-halved"></i> Secure</span><span><i class="fas fa-check"></i> Available</span></div>
+</div>
+</article>
 
-      <!-- CARD 1 -->
-      <div class="card">
-        <div class="card-img-well">
-          <span class="card-badge badge-sale">-25%</span>
-
-          <svg viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="1.5">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01
-                     M6 12h.01M10 12h.01M14 12h.01M18 12h.01
-                     M6 16h.01M10 16h.01M14 16h.01M18 16h.01"/>
-          </svg>
-        </div>
-
-        <div class="card-body">
-          <div class="card-cat">Keyboards</div>
-          <h3 class="card-title">Wireless Keyboard</h3>
-
-          <div class="card-rating">
-            <span class="stars">★★★★☆</span>
-            <span class="count">4.8 (2,340)</span>
-          </div>
-
-          <p class="card-desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Non, neque nobis quibusdam quasi eaque.
-          </p>
-
-          <div class="card-price">
-            <span class="price-now">$149</span>
-            <span class="price-was">$199</span>
-            <span class="price-off">Save $50</span>
-          </div>
-
-          <a
-            class="card-btn"
-            href="https://wa.me/6282219566685?text=Halo%20Vinz%2C%20saya%20tertarik%20dengan%20produk%20Wireless%20Keyboard.%20Boleh%20info%20lebih%20lanjut%3F"
-            target="_blank"
-            rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-            Pesan via WhatsApp
-          </a>
-
-          <div class="card-meta">
-            <span><i class="fas fa-truck"></i> Free Shipping</span>
-            <span><i class="fas fa-undo"></i> 30-Day Returns</span>
-            <span><i class="fas fa-check"></i> In Stock</span>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- CARD 2 -->
-      <div class="card">
-        <div class="card-img-well">
-          <span class="card-badge badge-new">NEW</span>
-
-          <svg viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="1.5">
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z
-                     M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-          </svg>
-        </div>
-
-        <div class="card-body">
-          <div class="card-cat">Audio</div>
-          <h3 class="card-title">Wireless Headset</h3>
-
-          <div class="card-rating">
-            <span class="stars">★★★★☆</span>
-            <span class="count">4.6 (891)</span>
-          </div>
-
-          <p class="card-desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Rem consequuntur officiis nulla sed ipsa iure natus.
-          </p>
-
-          <div class="card-price">
-            <span class="price-now">$279</span>
-            <span class="price-was">$329</span>
-            <span class="price-off">Save $50</span>
-          </div>
-
-          <a
-            class="card-btn"
-            href="https://wa.me/6282219566685?text=Halo%20Vinz%2C%20saya%20tertarik%20dengan%20produk%20Wireless%20Headset.%20Boleh%20info%20lebih%20lanjut%3F"
-            target="_blank"
-            rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-            Pesan via WhatsApp
-          </a>
-
-          <div class="card-meta">
-            <span><i class="fas fa-truck"></i> Free Shipping</span>
-            <span><i class="fas fa-undo"></i> 30-Day Returns</span>
-            <span><i class="fas fa-check"></i> In Stock</span>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- CARD 3 -->
-      <div class="card">
-        <div class="card-img-well">
-          <span class="card-badge badge-limited">LIMITED</span>
-
-          <svg viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="1.5">
-            <rect x="2" y="3" width="20" height="14" rx="2"/>
-            <path d="M8 21h8M12 17v4"/>
-          </svg>
-        </div>
-
-        <div class="card-body">
-          <div class="card-cat">Displays</div>
-          <h3 class="card-title">Gaming Monitor</h3>
-
-          <div class="card-rating">
-            <span class="stars">★★★★★</span>
-            <span class="count">4.9 (512)</span>
-          </div>
-
-          <p class="card-desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Odio quia optio ipsum, facilis cumque.
-          </p>
-
-          <div class="card-price">
-            <span class="price-now">$549</span>
-          </div>
-
-          <a
-            class="card-btn"
-            href="https://wa.me/6282219566685?text=Halo%20Vinz%2C%20saya%20tertarik%20dengan%20produk%20Gaming%20Monitor.%20Boleh%20info%20lebih%20lanjut%3F"
-            target="_blank"
-            rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-            Pesan via WhatsApp
-          </a>
-
-          <div class="card-meta">
-            <span><i class="fas fa-truck"></i> Free Shipping</span>
-            <span><i class="fas fa-undo"></i> 30-Day Returns</span>
-            <span><i class="fas fa-check"></i> In Stock</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+</section>
+</div>
 </main>
 
-<footer>© 2026 Vinz / Aditya</footer>
-
-
-<!-- LIQUID BOTTOM NAV — HANYA HOME + PRODUK -->
 <div class="liquid-wrapper">
-  <nav class="liquid-nav" id="liquidNav">
-
-    <div class="notch-layer">
-      <div class="notch-track" id="notchTrack">
-        <svg class="notch-svg" viewBox="0 0 95 30">
-          <path
-            d="M0,0 H27 C35,0 38,8 47.5,8
-               C57,8 60,0 68,0 H95 V30 H0 Z"
-            fill="#2b1b4a"/>
-        </svg>
-      </div>
-    </div>
-
-    <div class="indicator-layer">
-      <div class="indicator-track" id="indicatorTrack">
-        <div class="white-circle"></div>
-      </div>
-    </div>
-
-    <ul class="nav-list">
-
-      <li class="nav-item" data-index="0">
-        <a href="index.html" class="nav-btn">
-          <span class="icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-          </span>
-          <span class="label">Home</span>
-        </a>
-      </li>
-
-      <li class="nav-item active" data-index="1">
-        <a href="produk.html" class="nav-btn">
-          <span class="icon">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="3" width="7" height="7"/>
-              <rect x="14" y="3" width="7" height="7"/>
-              <rect x="14" y="14" width="7" height="7"/>
-              <rect x="3" y="14" width="7" height="7"/>
-            </svg>
-          </span>
-          <span class="label">Produk</span>
-        </a>
-      </li>
-
-    </ul>
-  </nav>
+<nav class="liquid-nav" id="liquidNav">
+<div class="notch" id="notch"></div><div class="indicator" id="indicator"></div>
+<ul class="nav-list">
+<li class="nav-item"><a href="index.html" class="nav-btn"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="label">Home</span></a></li>
+<li class="nav-item active"><a href="produk.html" class="nav-btn"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="label">Produk</span></a></li>
+</ul>
+</nav>
 </div>
 
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  const nav = document.getElementById('liquidNav');
-  const items = document.querySelectorAll('.liquid-nav .nav-item');
-  const notchTrack = document.getElementById('notchTrack');
-  const indicatorTrack = document.getElementById('indicatorTrack');
-
-  function update(active){
-
-    if(!active || !nav) return;
-
-    const nr = nav.getBoundingClientRect();
-    const ir = active.getBoundingClientRect();
-
-    const left = ir.left - nr.left;
-    const width = ir.width;
-
-    notchTrack.style.width = width + 'px';
-    notchTrack.style.transform = `translateX(${left}px)`;
-
-    indicatorTrack.style.width = width + 'px';
-    indicatorTrack.style.transform = `translateX(${left}px)`;
-  }
-
-  items.forEach(item => {
-
-    item.addEventListener('click', () => {
-
-      items.forEach(i => i.classList.remove('active'));
-
-      item.classList.add('active');
-
-      update(item);
-    });
-
-  });
-
-  update(document.querySelector('.liquid-nav .nav-item.active'));
-
-  window.addEventListener('resize', () => {
-    update(document.querySelector('.liquid-nav .nav-item.active'));
-  });
-
-});
+const nav=document.getElementById('liquidNav'),items=[...document.querySelectorAll('.nav-item')],indicator=document.getElementById('indicator'),notch=document.getElementById('notch');
+function updateIndicator(){const a=document.querySelector('.nav-item.active');if(!a)return;const nr=nav.getBoundingClientRect(),ir=a.getBoundingClientRect(),c=ir.left-nr.left+ir.width/2;indicator.style.left=(c-35)+'px';notch.style.left=(c-48)+'px'}
+window.addEventListener('resize',updateIndicator);window.addEventListener('load',updateIndicator);updateIndicator();
 </script>
-
 </body>
 </html>
