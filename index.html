@@ -1,339 +1,206 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dityya Space | Dashboard</title>
+<title>Vinz Space | Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <style>
-:root {
-  --bg-page: #07090f;
-  --bg-nav: rgba(10,13,22,0.88);
-  --bg-card: #0e1120;
-  --bg-hover: #131729;
-  --accent: #818cf8;
-  --accent-soft: rgba(129,140,248,0.12);
-  --accent-glow: rgba(129,140,248,0.22);
-  --accent-pro: #f59e0b;
-  --border: rgba(255,255,255,0.07);
-  --border-hi: rgba(129,140,248,0.35);
-  --text: #e2e8f0;
-  --text-muted: #64748b;
-  --r: 8px;
-  --r-lg: 14px;
-  --nav-h: 64px;
-  --sidebar-w: 260px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
-a{text-decoration:none;color:inherit}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg-page);min-height:100vh;color:var(--text);
-  background-image:linear-gradient(rgba(129,140,248,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(129,140,248,0.03) 1px,transparent 1px);
-  background-size:40px 40px;
-}
-
-/* SIDEBAR – tanpa Project & Contact */
+:root{--bg-page:#07090f;--bg-nav:rgba(10,13,22,0.92);--bg-card:#0e1120;--bg-hover:#131729;--accent:#818cf8;--accent-soft:rgba(129,140,248,0.12);--accent-glow:rgba(129,140,248,0.22);--accent-pro:#f59e0b;--border:rgba(255,255,255,0.07);--border-hi:rgba(129,140,248,0.35);--text:#e2e8f0;--text-muted:#64748b;--r:8px;--r-lg:14px;--nav-h:64px;--sidebar-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}a{text-decoration:none;color:inherit}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-page);min-height:100vh;color:var(--text);background-image:linear-gradient(rgba(129,140,248,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(129,140,248,0.03) 1px,transparent 1px);background-size:40px 40px}
+#loading-screen{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at center,#260f42 0%,#0d0514 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s}
+#loading-screen.hide{opacity:0;visibility:hidden;pointer-events:none}
+.spinner{position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center}
+.core{width:40px;height:40px;background:#9d4edd;border-radius:50%;box-shadow:0 0 20px #9d4edd,0 0 40px #7b2cbf;animation:pulse 1.5s ease-in-out infinite alternate;z-index:10}
+.orbit-container{position:absolute;width:100%;height:100%;animation:spin 4s linear infinite}
+.orbit-ring{position:absolute;width:100%;height:100%;border:3px solid transparent;border-top-color:#c77dff;border-right-color:#9d4edd;border-radius:50%;animation:spin 2s cubic-bezier(.68,-.55,.265,1.55) infinite}
+.orbit-ring:nth-child(2){width:75%;height:75%;top:12.5%;left:12.5%;border-width:2px;border-top-color:#e0aaff;border-right-color:transparent;border-left-color:#7b2cbf;border-bottom-color:#5a189a;animation-direction:reverse;animation-duration:3s}
+.orbit-ring:nth-child(3){width:50%;height:50%;top:25%;left:25%;border-width:2px;border-top-color:#c77dff;border-bottom-color:#9d4edd;animation-duration:1.5s}
+.loading-text{margin-top:40px;color:#e0aaff;font-size:1rem;letter-spacing:.5em;text-transform:uppercase;font-weight:600;background:linear-gradient(90deg,#5a189a,#e0aaff,#5a189a);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shine 2s linear infinite}
+@keyframes pulse{0%{transform:scale(.85);opacity:.8}100%{transform:scale(1.15);opacity:1}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes shine{to{background-position:200% center}}
 .sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:#0a0d16;border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:900;transition:transform .35s cubic-bezier(.16,1,.3,1)}
 .sidebar-header{height:var(--nav-h);display:flex;align-items:center;gap:12px;padding:0 20px;border-bottom:1px solid var(--border)}
-.sidebar-header .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#818cf8,#6366f1);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#fff}
+.sidebar-header .logo{width:34px;height:34px;border-radius:9px;overflow:hidden;flex-shrink:0}
+.sidebar-header .logo img{width:100%;height:100%;object-fit:cover}
 .sidebar-header .logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:16px}
 .sidebar-header .logo-text span{color:var(--accent)}
 .sidebar-nav{flex:1;padding:18px 12px;overflow-y:auto}
 .nav-label{font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-muted);padding:8px 12px 6px}
 .nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:var(--r);margin-bottom:2px;color:var(--text-muted);transition:all .2s;position:relative}
-.nav-item:hover,.nav-item.active{background:var(--accent-soft);color:var(--text)}
-.nav-item.active{color:var(--accent)}
+.nav-item:hover,.nav-item.active{background:var(--accent-soft);color:var(--text)}.nav-item.active{color:var(--accent)}
 .nav-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:18px;background:var(--accent);border-radius:0 4px 4px 0}
 .sidebar-footer{padding:14px;border-top:1px solid var(--border)}
 .user-profile{display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--r);background:var(--bg-card)}
 .user-profile .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#818cf8,#6366f1);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff}
-.user-info .name{font-size:13px;font-weight:600}
-.user-info .role{font-size:11px;color:var(--text-muted)}
-
-/* TOP NAVBAR (kode kamu) */
+.user-info .name{font-size:13px;font-weight:600}.user-info .role{font-size:11px;color:var(--text-muted)}
 .navbar{position:fixed;top:0;left:var(--sidebar-w);right:0;height:var(--nav-h);background:var(--bg-nav);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,.4);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 24px;transition:left .35s}
 .brand{display:flex;align-items:center;gap:10px}
-.brand-mark{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#818cf8,#6366f1);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:#fff}
-.brand-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:600}
-.brand-name span{color:var(--accent)}
+.brand-mark{width:32px;height:32px;border-radius:9px;overflow:hidden;flex-shrink:0}
+.brand-mark img{width:100%;height:100%;object-fit:cover}
+.brand-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:600}.brand-name span{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:6px}
 .icon-btn{position:relative;width:36px;height:36px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:.18s}
-.icon-btn:hover,.icon-btn.active{color:var(--text);background:var(--bg-hover)}
-.icon-btn.active{color:var(--accent);background:var(--accent-soft)}
+.icon-btn:hover,.icon-btn.active{color:var(--text);background:var(--bg-hover)}.icon-btn.active{color:var(--accent);background:var(--accent-soft)}
 .notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:#ef4444;border-radius:50%;border:1.5px solid var(--bg-page)}
 .nav-divider{width:1px;height:22px;background:var(--border);margin:0 2px}
 .profile-trigger{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border-radius:40px;border:1px solid var(--border);transition:.2s}
-.profile-trigger:hover,.profile-trigger.active{border-color:var(--border-hi);background:var(--bg-hover)}
-.profile-trigger.active{box-shadow:0 0 0 3px var(--accent-glow)}
+.profile-trigger:hover,.profile-trigger.active{border-color:var(--border-hi);background:var(--bg-hover)}.profile-trigger.active{box-shadow:0 0 0 3px var(--accent-glow)}
 .avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#818cf8,#6366f1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
 .trigger-name{font-size:13px;font-weight:600}
-.chevron{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
-.profile-trigger.active .chevron{transform:rotate(180deg);color:var(--accent)}
-
+.chevron{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}.profile-trigger.active .chevron{transform:rotate(180deg);color:var(--accent)}
 .panel-wrap{position:relative}
 .panel{position:absolute;top:calc(100% + 10px);right:0;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:0 24px 64px rgba(0,0,0,.7);z-index:999;overflow:hidden;opacity:0;transform:translateY(-10px) scale(.97);pointer-events:none;transition:.25s cubic-bezier(.16,1,.3,1)}
 .panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 #profilePanel{width:256px}
 .panel-user{padding:14px;display:flex;gap:11px;border-bottom:1px solid var(--border)}
 .panel-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#818cf8,#6366f1);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;box-shadow:0 0 12px var(--accent-glow)}
-.panel-user-name{font-size:13.5px;font-weight:600}
-.panel-user-email{font-size:11px;color:var(--text-muted)}
+.panel-user-name{font-size:13.5px;font-weight:600}.panel-user-email{font-size:11px;color:var(--text-muted)}
 .plan-badge{display:inline-flex;align-items:center;gap:4px;margin-top:5px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;background:rgba(245,158,11,.12);color:var(--accent-pro);border:1px solid rgba(245,158,11,.25)}
-.panel-section{padding:6px}
-.section-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:7px 10px 4px}
-.menu-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--r);cursor:pointer;transition:.15s}
-.menu-item:hover{background:var(--bg-hover);padding-left:14px}
+.panel-section{padding:6px}.section-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:7px 10px 4px}
+.menu-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--r);cursor:pointer;transition:.15s}.menu-item:hover{background:var(--bg-hover);padding-left:14px}
 .item-icon{width:30px;height:30px;border-radius:7px;background:var(--bg-hover);display:flex;align-items:center;justify-content:center;color:var(--text-muted)}
-.item-label{font-size:13px;font-weight:500}
-.item-sub{font-size:11px;color:var(--text-muted)}
-
+.item-label{font-size:13px;font-weight:500}.item-sub{font-size:11px;color:var(--text-muted)}
 #searchPanel,#notifPanel{width:300px}
 .search-box{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border)}
 .search-box input{flex:1;background:none;border:none;outline:none;font-size:13.5px;color:var(--text)}
-.search-recents{padding:6px}
-.search-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:7px 10px 4px}
-.search-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r);cursor:pointer}
-.search-item:hover{background:var(--bg-hover)}
-.search-empty{padding:24px;text-align:center;font-size:13px;color:var(--text-muted);display:none}
-.search-empty.show{display:block}
+.search-recents{padding:6px}.search-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:7px 10px 4px}
+.search-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r);cursor:pointer}.search-item:hover{background:var(--bg-hover)}
+.search-empty{padding:24px;text-align:center;font-size:13px;color:var(--text-muted);display:none}.search-empty.show{display:block}
 .notif-header{display:flex;justify-content:space-between;padding:13px 14px 11px;border-bottom:1px solid var(--border)}
-.notif-title{font-size:13.5px;font-weight:600}
-.notif-clear{font-size:11px;color:var(--accent);cursor:pointer}
+.notif-title{font-size:13.5px;font-weight:600}.notif-clear{font-size:11px;color:var(--accent);cursor:pointer}
 .notif-list{padding:6px;max-height:280px;overflow-y:auto}
-.notif-item{display:flex;gap:10px;padding:10px;border-radius:var(--r);cursor:pointer;position:relative}
-.notif-item:hover{background:var(--bg-hover)}
+.notif-item{display:flex;gap:10px;padding:10px;border-radius:var(--r);cursor:pointer;position:relative}.notif-item:hover{background:var(--bg-hover)}
 .notif-item.unread::after{content:'';position:absolute;top:12px;right:10px;width:6px;height:6px;background:var(--accent);border-radius:50%}
-.n-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
-.n-purple{background:var(--accent-soft)}
-.n-msg{font-size:12.5px;line-height:1.4}
-.n-time{font-size:11px;color:var(--text-muted);margin-top:2px}
-
+.n-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}.n-purple{background:var(--accent-soft)}
+.n-msg{font-size:12.5px;line-height:1.4}.n-time{font-size:11px;color:var(--text-muted);margin-top:2px}
 .main{margin-left:var(--sidebar-w);padding-top:var(--nav-h);min-height:100vh;transition:margin .35s}
 .content{max-width:900px;margin:0 auto;padding:40px 24px 120px}
-
 .hero{text-align:center;padding:20px 0 30px}
 .typing-box{font-family:'Syne',sans-serif;font-size:clamp(26px,5vw,44px);font-weight:800;min-height:1.3em;margin-bottom:10px}
-.cursor{display:inline-block;width:3px;height:1.1em;background:var(--accent);margin-left:3px;animation:blink 1s step-end infinite;vertical-align:middle}
-@keyframes blink{50%{opacity:0}}
+.cursor{display:inline-block;width:3px;height:1.1em;background:var(--accent);margin-left:3px;animation:blink 1s step-end infinite;vertical-align:middle}@keyframes blink{50%{opacity:0}}
 .hero-sub{color:var(--text-muted);font-size:15px;margin-bottom:28px}
-
 .clock-container{display:inline-flex;align-items:center;gap:12px;background:rgba(14,17,32,.7);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:16px;padding:16px 26px;box-shadow:0 0 40px rgba(129,140,248,.12);margin-bottom:32px}
 .time-value{font-family:'Share Tech Mono',monospace;font-size:34px;font-weight:700;color:#fff;text-shadow:0 0 12px rgba(129,140,248,.5)}
 .time-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-top:2px}
 .colon{font-family:'Share Tech Mono',monospace;font-size:30px;color:var(--accent);opacity:.7}
-
 .social-wrapper{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:40px}
 .social-btn{position:relative;display:flex;align-items:center;height:52px;width:52px;padding:0 16px;border-radius:50px;color:#9d8dbb;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);overflow:hidden;transition:all .45s cubic-bezier(.175,.885,.32,1.275)}
-.social-btn i{font-size:18px;z-index:2;transition:transform .5s}
-.social-btn .btn-text{font-size:14px;font-weight:600;white-space:nowrap;margin-left:12px;opacity:0;transform:translateX(-12px);transition:all .35s;z-index:2}
-.social-btn:hover{width:160px;color:#fff;transform:translateY(-4px)}
-.social-btn:hover .btn-text{opacity:1;transform:translateX(0)}
-.social-btn:hover i{transform:rotate(360deg)}
-.github:hover{background:#333;border-color:#444}
-.whatsapp:hover{background:#25D366;border-color:#25D366}
-.telegram:hover{background:#0088cc;border-color:#0088cc}
-.channel:hover{background:#128C7E;border-color:#128C7E}
-.group:hover{background:#075E54;border-color:#075E54}
-
-.music-box{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:20px;overflow:hidden}
-.music-box iframe{border-radius:12px;width:100%}
-
-.menu-toggle{display:none;width:36px;height:36px;border-radius:var(--r);align-items:center;justify-content:center;color:var(--text-muted)}
-.menu-toggle:hover{background:var(--bg-hover);color:var(--text)}
-
-/* ===== LIQUID NAV (asli dari Feza) – hanya Home + Produk ===== */
+.social-btn i{font-size:18px;z-index:2;transition:transform .5s}.social-btn .btn-text{font-size:14px;font-weight:600;white-space:nowrap;margin-left:12px;opacity:0;transform:translateX(-12px);transition:all .35s;z-index:2}
+.social-btn:hover{width:160px;color:#fff;transform:translateY(-4px)}.social-btn:hover .btn-text{opacity:1;transform:translateX(0)}.social-btn:hover i{transform:rotate(360deg)}
+.github:hover{background:#333;border-color:#444}.whatsapp:hover{background:#25D366;border-color:#25D366}.telegram:hover{background:#0088cc;border-color:#0088cc}.channel:hover{background:#128C7E;border-color:#128C7E}.group:hover{background:#075E54;border-color:#075E54}
+.music-box{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:20px;overflow:hidden}.music-box iframe{border-radius:12px;width:100%}
+.menu-toggle{display:none;width:36px;height:36px;border-radius:var(--r);align-items:center;justify-content:center;color:var(--text-muted)}.menu-toggle:hover{background:var(--bg-hover);color:var(--text)}
 .liquid-wrapper{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);width:100%;max-width:320px;z-index:950;padding:0 12px}
 .liquid-nav{position:relative;width:100%;height:64px;background:#2b1b4a;border-radius:20px;box-shadow:0 16px 40px rgba(0,0,0,.45)}
-.notch-layer,.indicator-layer{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
-.notch-layer{z-index:10}
-.indicator-layer{z-index:20}
+.notch-layer,.indicator-layer{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}.notch-layer{z-index:10}.indicator-layer{z-index:20}
 .notch-track,.indicator-track{position:absolute;top:0;left:0;height:100%;transition:transform .45s cubic-bezier(.5,1.25,.35,1),width .45s ease}
 .notch-svg{position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:90px;height:28px}
 .white-circle{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:48px;height:48px;background:#fff;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .nav-list{position:relative;display:flex;width:100%;height:100%;list-style:none;z-index:30}
 .nav-item{flex:1;display:flex;align-items:center;justify-content:center}
 .nav-btn{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;height:100%;color:rgba(255,255,255,.55);transition:color .3s}
-.nav-btn .icon{width:22px;height:22px}
-.nav-btn .icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.nav-btn .label{font-size:10px;font-weight:500}
-.nav-item.active .nav-btn{color:#fff}
-.nav-item.active .nav-btn .icon{color:#2b1b4a}
-
+.nav-btn .icon{width:22px;height:22px}.nav-btn .icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-btn .label{font-size:10px;font-weight:500}.nav-item.active .nav-btn{color:#fff}.nav-item.active .nav-btn .icon{color:#2b1b4a}
 footer{text-align:center;padding:24px;color:var(--text-muted);font-size:13px;border-top:1px solid var(--border);margin-left:var(--sidebar-w)}
-
-@media(max-width:980px){
-  .sidebar{transform:translateX(-100%)}
-  .sidebar.open{transform:translateX(0)}
-  .navbar,.main,footer{left:0;margin-left:0}
-  .menu-toggle{display:flex}
-}
+@media(max-width:980px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.navbar,.main,footer{left:0;margin-left:0}.menu-toggle{display:flex}}
 @media(max-width:560px){.trigger-name{display:none}}
 </style>
 </head>
 <body>
-
+<div id="loading-screen"><div class="spinner"><div class="orbit-container"><div class="orbit-ring"></div><div class="orbit-ring"></div><div class="orbit-ring"></div></div><div class="core"></div></div><div class="loading-text">Loading...</div></div>
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <div class="logo">V</div>
-    <div class="logo-text">Vinz<span>Space</span></div>
-  </div>
-  <nav class="sidebar-nav">
-    <div class="nav-label">Menu</div>
-    <a href="index.html" class="nav-item active"><i class="fas fa-home"></i> Dashboard</a>
-    <a href="produk.html" class="nav-item"><i class="fas fa-box"></i> Produk</a>
-    <a href="#music" class="nav-item"><i class="fas fa-music"></i> Music</a>
-    <div class="nav-label" style="margin-top:18px">Social</div>
-    <a href="https://github.com/adityaakun" target="_blank" class="nav-item"><i class="fab fa-github"></i> GitHub</a>
-    <a href="https://wa.me/6282219566685" target="_blank" class="nav-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-    <a href="https://t.me/vinzxxc" target="_blank" class="nav-item"><i class="fab fa-telegram"></i> Telegram</a>
-  </nav>
-  <div class="sidebar-footer">
-    <div class="user-profile">
-      <div class="av">VA</div>
-      <div class="user-info">
-        <div class="name">Vinz / Aditya</div>
-        <div class="role">@vinzxxc</div>
-      </div>
-    </div>
-  </div>
-</aside>
-
-<nav class="navbar">
-  <div style="display:flex;align-items:center;gap:12px">
-    <button class="menu-toggle" id="menuToggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-    <a href="index.html" class="brand">
-      <div class="brand-mark">V</div>
-      <span class="brand-name">Vinz<span>Space</span></span>
-    </a>
-  </div>
-  <div class="nav-right">
-    <div class="panel-wrap" id="searchWrap">
-      <button class="icon-btn" id="searchBtn"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 10L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-      <div class="panel" id="searchPanel">
-        <div class="search-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 9.5L12.5 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><input id="searchInput" type="text" placeholder="Search anything…" autocomplete="off"/></div>
-        <div class="search-recents" id="searchRecents"><div class="search-label">Recent</div><div class="search-item"><div class="s-icon" style="width:28px;height:28px;border-radius:7px;background:var(--bg-hover);display:flex;align-items:center;justify-content:center"><i class="fas fa-music" style="font-size:12px"></i></div><div><div class="s-label">Music</div><div class="s-sub">Playlist</div></div></div></div>
-        <div class="search-empty" id="searchEmpty">No results found</div>
-      </div>
-    </div>
-    <div class="panel-wrap" id="notifWrap">
-      <button class="icon-btn" id="notifBtn"><div class="notif-dot" id="notifDot"></div><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5A4.5 4.5 0 0 0 3.5 6v3.5L2 11h12l-1.5-1.5V6A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6.5 11.5C6.5 12.33 7.17 13 8 13s1.5-.67 1.5-1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
-      <div class="panel" id="notifPanel">
-        <div class="notif-header"><span class="notif-title">Notifications</span><span class="notif-clear" id="markAllRead">Mark all read</span></div>
-        <div class="notif-list">
-          <div class="notif-item unread"><div class="n-icon n-purple">🎉</div><div class="n-body"><div class="n-msg"><strong>Welcome!</strong> Dashboard siap.</div><div class="n-time">Just now</div></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="nav-divider"></div>
-    <div class="panel-wrap" id="profileWrap">
-      <button class="profile-trigger" id="profileBtn"><div class="avatar">VA</div><span class="trigger-name">Vinz</span><svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.5L7 9L10.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <div class="panel" id="profilePanel">
-        <div class="panel-user"><div class="panel-avatar">VA</div><div><div class="panel-user-name">Vinz / Aditya</div><div class="panel-user-email">@vinzxxc</div><div class="plan-badge">★ Personal</div></div></div>
-        <div class="panel-section">
-          <div class="section-label">Links</div>
-          <a href="https://github.com/adityaakun" target="_blank" class="menu-item"><div class="item-icon"><i class="fab fa-github"></i></div><span class="item-text"><span class="item-label">GitHub</span><span class="item-sub">adityaakun</span></span></a>
-          <a href="https://wa.me/6282219566685" target="_blank" class="menu-item"><div class="item-icon"><i class="fab fa-whatsapp"></i></div><span class="item-text"><span class="item-label">WhatsApp</span><span class="item-sub">+62 822-1956-6685</span></span></a>
-          <a href="https://t.me/vinzxxc" target="_blank" class="menu-item"><div class="item-icon"><i class="fab fa-telegram"></i></div><span class="item-text"><span class="item-label">Telegram</span><span class="item-sub">@vinzxxc</span></span></a>
-          <a href="https://whatsapp.com/channel/0029Vb8aXWFCXC3TNiGtI42l" target="_blank" class="menu-item"><div class="item-icon"><i class="fas fa-bullhorn"></i></div><span class="item-text"><span class="item-label">Channel WA</span></span></a>
-          <a href="https://chat.whatsapp.com/BGOZmR0IyvE8I1SzQ1Th6D" target="_blank" class="menu-item"><div class="item-icon"><i class="fas fa-users"></i></div><span class="item-text"><span class="item-label">Group</span></span></a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="sidebar-header"><div class="logo"><img src="https://files.catbox.moe/a373tc.jpg" alt="logo"></div><div class="logo-text">Vinz<span>Space</span></div></div>
+<nav class="sidebar-nav">
+<div class="nav-label">Menu</div>
+<a href="index.html" class="nav-item active"><i class="fas fa-home"></i> Dashboard</a>
+<a href="produk.html" class="nav-item"><i class="fas fa-box"></i> Produk</a>
+<a href="#music" class="nav-item"><i class="fas fa-music"></i> Music</a>
+<div class="nav-label" style="margin-top:18px">Social</div>
+<a href="https://github.com/adityaakun" target="_blank" class="nav-item"><i class="fab fa-github"></i> GitHub</a>
+<a href="https://wa.me/6282219566685" target="_blank" class="nav-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+<a href="https://t.me/vinzxxc" target="_blank" class="nav-item"><i class="fab fa-telegram"></i> Telegram</a>
 </nav>
-
-<main class="main">
-  <div class="content">
-    <section class="hero">
-      <div class="typing-box" id="typingText"></div>
-      <p class="hero-sub">Personal Dashboard • Code • Music</p>
-      <div class="clock-container">
-        <div class="time-block"><span id="hours" class="time-value">00</span><div class="time-label">Hours</div></div>
-        <div class="colon">:</div>
-        <div class="time-block"><span id="minutes" class="time-value">00</span><div class="time-label">Minutes</div></div>
-        <div class="colon">:</div>
-        <div class="time-block"><span id="seconds" class="time-value">00</span><div class="time-label">Seconds</div></div>
-      </div>
-      <div class="social-wrapper">
-        <a href="https://github.com/adityaakun" target="_blank" class="social-btn github"><i class="fab fa-github"></i><span class="btn-text">GitHub</span></a>
-        <a href="https://wa.me/6282219566685" target="_blank" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i><span class="btn-text">WhatsApp</span></a>
-        <a href="https://t.me/vinzxxc" target="_blank" class="social-btn telegram"><i class="fab fa-telegram-plane"></i><span class="btn-text">Telegram</span></a>
-        <a href="https://whatsapp.com/channel/0029Vb8aXWFCXC3TNiGtI42l" target="_blank" class="social-btn channel"><i class="fas fa-bullhorn"></i><span class="btn-text">Channel</span></a>
-        <a href="https://chat.whatsapp.com/BGOZmR0IyvE8I1SzQ1Th6D" target="_blank" class="social-btn group"><i class="fas fa-users"></i><span class="btn-text">Group</span></a>
-      </div>
-    </section>
-
-    <section id="music">
-      <h2 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px">Now Playing</h2>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Playlist Spotify</p>
-      <div class="music-box">
-        <iframe src="https://open.spotify.com/embed/playlist/2w6K8m9zM0sX3sbwB4X7RU?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
-    </section>
-  </div>
-</main>
-
-<footer>© 2026 Vinz / Aditya</footer>
-
-<!-- LIQUID NAV – hanya Home + Produk (asli Feza style) -->
-<div class="liquid-wrapper">
-  <nav class="liquid-nav" id="liquidNav">
-    <div class="notch-layer"><div class="notch-track" id="notchTrack"><svg class="notch-svg" viewBox="0 0 95 30"><path d="M0,0 H27 C35,0 38,8 47.5,8 C57,8 60,0 68,0 H95 V30 H0 Z" fill="#2b1b4a"/></svg></div></div>
-    <div class="indicator-layer"><div class="indicator-track" id="indicatorTrack"><div class="white-circle"></div></div></div>
-    <ul class="nav-list">
-      <li class="nav-item active" data-index="0">
-        <a href="index.html" class="nav-btn">
-          <span class="icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-          <span class="label">Home</span>
-        </a>
-      </li>
-      <li class="nav-item" data-index="1">
-        <a href="produk.html" class="nav-btn">
-          <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-          <span class="label">Produk</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+<div class="sidebar-footer"><div class="user-profile"><div class="av">VA</div><div class="user-info"><div class="name">Vinz / Aditya</div><div class="role">@vinzxxc</div></div></div></div>
+</aside>
+<nav class="navbar">
+<div style="display:flex;align-items:center;gap:12px">
+<button class="menu-toggle" id="menuToggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<a href="index.html" class="brand"><div class="brand-mark"><img src="https://files.catbox.moe/a373tc.jpg" alt="logo"></div><span class="brand-name">Vinz<span>Space</span></span></a>
 </div>
-
+<div class="nav-right">
+<div class="panel-wrap" id="searchWrap"><button class="icon-btn" id="searchBtn"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 10L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+<div class="panel" id="searchPanel"><div class="search-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 9.5L12.5 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><input id="searchInput" type="text" placeholder="Search anything…" autocomplete="off"/></div>
+<div class="search-recents" id="searchRecents"><div class="search-label">Recent</div><div class="search-item"><div style="width:28px;height:28px;border-radius:7px;background:var(--bg-hover);display:flex;align-items:center;justify-content:center"><i class="fas fa-music" style="font-size:12px"></i></div><div><div class="s-label">Music</div><div class="s-sub">Playlist</div></div></div></div>
+<div class="search-empty" id="searchEmpty">No results found</div></div></div>
+<div class="panel-wrap" id="notifWrap"><button class="icon-btn" id="notifBtn"><div class="notif-dot" id="notifDot"></div><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5A4.5 4.5 0 0 0 3.5 6v3.5L2 11h12l-1.5-1.5V6A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6.5 11.5C6.5 12.33 7.17 13 8 13s1.5-.67 1.5-1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+<div class="panel" id="notifPanel"><div class="notif-header"><span class="notif-title">Notifications</span><span class="notif-clear" id="markAllRead">Mark all read</span></div>
+<div class="notif-list"><div class="notif-item unread"><div class="n-icon n-purple">🎉</div><div class="n-body"><div class="n-msg"><strong>Welcome!</strong> Dashboard siap.</div><div class="n-time">Just now</div></div></div></div></div></div>
+<div class="nav-divider"></div>
+<div class="panel-wrap" id="profileWrap"><button class="profile-trigger" id="profileBtn"><div class="avatar">VA</div><span class="trigger-name">Vinz</span><svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.5L7 9L10.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<div class="panel" id="profilePanel"><div class="panel-user"><div class="panel-avatar">VA</div><div><div class="panel-user-name">Vinz / Aditya</div><div class="panel-user-email">@vinzxxc</div><div class="plan-badge">★ Personal</div></div></div>
+<div class="panel-section"><div class="section-label">Links</div>
+<a href="https://github.com/adityaakun" target="_blank" class="menu-item"><div class="item-icon"><i class="fab fa-github"></i></div><span class="item-text"><span class="item-label">GitHub</span><span class="item-sub">adityaakun</span></span></a>
+<a href="https://wa.me/6282219566685" target="_blank" class="menu-item"><div class="item-icon"><i class="fab fa-whatsapp"></i></div><span class="item-text"><span class="item-label">WhatsApp</span><span class="item-sub">+62 822-1956-6685</span></span></a>
+<a href="https://t.me/vinzxxc" target="_blank" class="menu-item"><div class="item-icon"><i class="fab fa-telegram"></i></div><span class="item-text"><span class="item-label">Telegram</span><span class="item-sub">@vinzxxc</span></span></a>
+<a href="https://whatsapp.com/channel/0029Vb8aXWFCXC3TNiGtI42l" target="_blank" class="menu-item"><div class="item-icon"><i class="fas fa-bullhorn"></i></div><span class="item-text"><span class="item-label">Channel WA</span></span></a>
+<a href="https://chat.whatsapp.com/BGOZmR0IyvE8I1SzQ1Th6D" target="_blank" class="menu-item"><div class="item-icon"><i class="fas fa-users"></i></div><span class="item-text"><span class="item-label">Group</span></span></a>
+</div></div></div>
+</div>
+</nav>
+<main class="main"><div class="content">
+<section class="hero">
+<div class="typing-box" id="typingText"></div>
+<p class="hero-sub">Personal Dashboard • Code • Music</p>
+<div class="clock-container">
+<div class="time-block"><span id="hours" class="time-value">00</span><div class="time-label">Hours</div></div>
+<div class="colon">:</div>
+<div class="time-block"><span id="minutes" class="time-value">00</span><div class="time-label">Minutes</div></div>
+<div class="colon">:</div>
+<div class="time-block"><span id="seconds" class="time-value">00</span><div class="time-label">Seconds</div></div>
+</div>
+<div class="social-wrapper">
+<a href="https://github.com/adityaakun" target="_blank" class="social-btn github"><i class="fab fa-github"></i><span class="btn-text">GitHub</span></a>
+<a href="https://wa.me/6282219566685" target="_blank" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i><span class="btn-text">WhatsApp</span></a>
+<a href="https://t.me/vinzxxc" target="_blank" class="social-btn telegram"><i class="fab fa-telegram-plane"></i><span class="btn-text">Telegram</span></a>
+<a href="https://whatsapp.com/channel/0029Vb8aXWFCXC3TNiGtI42l" target="_blank" class="social-btn channel"><i class="fas fa-bullhorn"></i><span class="btn-text">Channel</span></a>
+<a href="https://chat.whatsapp.com/BGOZmR0IyvE8I1SzQ1Th6D" target="_blank" class="social-btn group"><i class="fas fa-users"></i><span class="btn-text">Group</span></a>
+</div>
+</section>
+<section id="music">
+<h2 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px">Now Playing</h2>
+<p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Playlist Spotify</p>
+<div class="music-box"><iframe src="https://open.spotify.com/embed/playlist/2w6K8m9zM0sX3sbwB4X7RU?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+</section>
+</div></main>
+<footer>© 2026 Vinz / Aditya</footer>
+<div class="liquid-wrapper">
+<nav class="liquid-nav" id="liquidNav">
+<div class="notch-layer"><div class="notch-track" id="notchTrack"><svg class="notch-svg" viewBox="0 0 95 30"><path d="M0,0 H27 C35,0 38,8 47.5,8 C57,8 60,0 68,0 H95 V30 H0 Z" fill="#2b1b4a"/></svg></div></div>
+<div class="indicator-layer"><div class="indicator-track" id="indicatorTrack"><div class="white-circle"></div></div></div>
+<ul class="nav-list">
+<li class="nav-item active" data-index="0"><a href="index.html" class="nav-btn"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="label">Home</span></a></li>
+<li class="nav-item" data-index="1"><a href="produk.html" class="nav-btn"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="label">Produk</span></a></li>
+</ul>
+</nav>
+</div>
 <script>
-const texts=["Halo, aku Vinz","Welcome to my space","Code • Music • Life"];
-let ti=0,ci=0,del=false;
-const el=document.getElementById('typingText');
-function type(){const cur=texts[ti];el.innerHTML=(del?cur.substring(0,ci-1):cur.substring(0,ci+1))+'<span class="cursor"></span>';if(!del&&ci===cur.length){del=true;setTimeout(type,1600);return}if(del&&ci===0){del=false;ti=(ti+1)%texts.length;setTimeout(type,350);return}ci+=del?-1:1;setTimeout(type,del?35:80)}
-type();
-function updateClock(){const n=new Date();document.getElementById('hours').textContent=String(n.getHours()).padStart(2,'0');document.getElementById('minutes').textContent=String(n.getMinutes()).padStart(2,'0');document.getElementById('seconds').textContent=String(n.getSeconds()).padStart(2,'0')}
-updateClock();setInterval(updateClock,1000);
-
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loading-screen').classList.add('hide'),1200)});
+const texts=["Halo, aku Vinz","Welcome to my space","Code • Music • Life"];let ti=0,ci=0,del=false;const el=document.getElementById('typingText');
+function type(){const cur=texts[ti];el.innerHTML=(del?cur.substring(0,ci-1):cur.substring(0,ci+1))+'<span class="cursor"></span>';if(!del&&ci===cur.length){del=true;setTimeout(type,1600);return}if(del&&ci===0){del=false;ti=(ti+1)%texts.length;setTimeout(type,350);return}ci+=del?-1:1;setTimeout(type,del?35:80)}type();
+function updateClock(){const n=new Date();document.getElementById('hours').textContent=String(n.getHours()).padStart(2,'0');document.getElementById('minutes').textContent=String(n.getMinutes()).padStart(2,'0');document.getElementById('seconds').textContent=String(n.getSeconds()).padStart(2,'0')}updateClock();setInterval(updateClock,1000);
 const ALL_PANELS=['searchWrap','notifWrap','profileWrap'];
 function closeAll(except){ALL_PANELS.forEach(id=>{if(id===except)return;const w=document.getElementById(id);if(!w)return;const p=w.querySelector('.panel'),b=w.querySelector('button');if(p)p.classList.remove('open');if(b){b.classList.remove('active');b.setAttribute('aria-expanded','false')}})}
 function bindPanel(wrapId,onOpen){const wrap=document.getElementById(wrapId);if(!wrap)return;const btn=wrap.querySelector('button'),panel=wrap.querySelector('.panel');if(!btn||!panel)return;btn.addEventListener('click',e=>{e.stopPropagation();const isOpen=panel.classList.contains('open');closeAll(wrapId);if(!isOpen){panel.classList.add('open');btn.classList.add('active');btn.setAttribute('aria-expanded','true');if(onOpen)onOpen()}else{panel.classList.remove('open');btn.classList.remove('active');btn.setAttribute('aria-expanded','false')}})}
-bindPanel('searchWrap',()=>document.getElementById('searchInput').focus());
-bindPanel('notifWrap');bindPanel('profileWrap');
+bindPanel('searchWrap',()=>document.getElementById('searchInput').focus());bindPanel('notifWrap');bindPanel('profileWrap');
 document.getElementById('searchInput').addEventListener('input',()=>{const q=document.getElementById('searchInput').value.trim();document.getElementById('searchRecents').style.display=q?'none':'';document.getElementById('searchEmpty').classList.toggle('show',q.length>0)});
 document.getElementById('markAllRead').addEventListener('click',()=>{document.querySelectorAll('.notif-item.unread').forEach(el=>el.classList.remove('unread'));document.getElementById('notifDot').style.display='none'});
-document.addEventListener('click',()=>closeAll(null));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll(null)});
+document.addEventListener('click',()=>closeAll(null));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll(null)});
 document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
-
-/* Liquid nav indicator */
-document.addEventListener('DOMContentLoaded',()=>{
-  const nav=document.getElementById('liquidNav');
-  const items=document.querySelectorAll('.liquid-nav .nav-item');
-  const notchTrack=document.getElementById('notchTrack');
-  const indicatorTrack=document.getElementById('indicatorTrack');
-  function update(active){if(!active||!nav)return;const nr=nav.getBoundingClientRect(),ir=active.getBoundingClientRect();const left=ir.left-nr.left,w=ir.width;notchTrack.style.width=w+'px';notchTrack.style.transform=`translateX(${left}px)`;indicatorTrack.style.width=w+'px';indicatorTrack.style.transform=`translateX(${left}px)`}
-  items.forEach(item=>{item.addEventListener('click',()=>{items.forEach(i=>i.classList.remove('active'));item.classList.add('active');update(item)})});
-  update(document.querySelector('.liquid-nav .nav-item.active'));
-  window.addEventListener('resize',()=>update(document.querySelector('.liquid-nav .nav-item.active')));
-});
+document.addEventListener('DOMContentLoaded',()=>{const nav=document.getElementById('liquidNav');const items=document.querySelectorAll('.liquid-nav .nav-item');const notchTrack=document.getElementById('notchTrack');const indicatorTrack=document.getElementById('indicatorTrack');function update(active){if(!active||!nav)return;const nr=nav.getBoundingClientRect(),ir=active.getBoundingClientRect();const left=ir.left-nr.left,w=ir.width;notchTrack.style.width=w+'px';notchTrack.style.transform=`translateX(${left}px)`;indicatorTrack.style.width=w+'px';indicatorTrack.style.transform=`translateX(${left}px)`}items.forEach(item=>{item.addEventListener('click',()=>{items.forEach(i=>i.classList.remove('active'));item.classList.add('active');update(item)})});update(document.querySelector('.liquid-nav .nav-item.active'));window.addEventListener('resize',()=>update(document.querySelector('.liquid-nav .nav-item.active')))});
 </script>
 </body>
 </html>
