@@ -1,115 +1,196 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Vinz Space | Produk</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root{--bg:#0b0612;--card:#140d20;--card2:#1a1027;--purple:#b66cff;--purple2:#9132e9;--text:#f4ecff;--muted:#a993b9;--line:rgba(210,160,255,.14);--gold:#f6b51b;--nav:#2b1b4a}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(circle at 50% -10%,rgba(177,91,255,.13),transparent 35%),linear-gradient(180deg,#0b0612,#100719 55%,#0a0510)}
-a{text-decoration:none;color:inherit}
-button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
-.topbar{display:none}
-.main{min-height:100vh;padding:48px 18px 125px}
-.content{width:min(900px,100%);margin:auto}
-.hero{text-align:center;padding:18px 0 38px}
-.title{font-family:'Syne',sans-serif;font-size:clamp(42px,10vw,72px);line-height:1;font-weight:800;letter-spacing:-2px;color:#f5eaff;margin-bottom:18px}
-.subtitle{color:#a993b9;font-size:clamp(15px,3vw,19px)}
-.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.product-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,#0f081a,#180e25);box-shadow:0 20px 60px rgba(0,0,0,.28);transition:.3s}
-.product-card:hover{transform:translateY(-5px);border-color:rgba(182,108,255,.35);box-shadow:0 24px 70px rgba(125,45,210,.18)}
-.product-image{height:260px;display:flex;align-items:center;justify-content:center;background:#10081b;border-bottom:1px solid rgba(255,255,255,.04);overflow:hidden}
-.product-image img{width:100%;height:100%;object-fit:cover;display:block}
-.badge{position:absolute;right:14px;top:14px;padding:7px 13px;border-radius:30px;background:rgba(83,47,10,.9);color:#ffb51b;border:1px solid rgba(246,181,27,.45);font-weight:700;font-size:13px;z-index:2}
-.badge.new{background:rgba(20,80,65,.8);color:#35d8a0;border-color:rgba(49,213,155,.35)}
-.product-body{padding:25px}
-.category{color:#75617f;font-weight:700;letter-spacing:1.5px;font-size:12px;margin-bottom:8px}
-.product-name{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:12px}
-.rating{display:flex;align-items:center;gap:7px;margin-bottom:14px}
-.stars{color:var(--gold);letter-spacing:1px}.rating-text{color:#a28eaf;font-size:14px}
-.description{color:#a895b7;line-height:1.6;font-size:14px;min-height:68px}
-.price-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:18px 0}
-.price{font-family:'Syne',sans-serif;font-size:32px;font-weight:800}
-.old-price{color:#65566c;text-decoration:line-through}
-.save{padding:6px 11px;border-radius:20px;background:rgba(246,181,27,.13);color:#e7a817;font-weight:700;font-size:12px}
-.wa-btn{width:100%;height:58px;border-radius:17px;display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(100deg,#b66cff,#9132e9);color:#fff;font-size:18px;font-weight:700;box-shadow:0 10px 30px rgba(148,52,232,.25);transition:.25s}
-.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 35px rgba(148,52,232,.4)}
-.features{display:flex;gap:14px;flex-wrap:wrap;margin-top:17px;color:#665771;font-size:13px}
-.features span{display:flex;align-items:center;gap:5px}
-.liquid-wrapper{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(320px,calc(100% - 34px));z-index:1000}
-.liquid-nav{position:relative;height:78px;background:var(--nav);border-radius:24px;box-shadow:0 18px 45px rgba(0,0,0,.55)}
-.nav-list{position:relative;z-index:30;display:flex;width:100%;height:100%;list-style:none}
-.nav-item{flex:1;display:flex;align-items:center;justify-content:center}
-.nav-btn{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:rgba(255,255,255,.58)}
-.nav-btn .icon{width:27px;height:27px}.nav-btn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.nav-btn .label{font-size:12px;font-weight:500}
-.nav-item.active .nav-btn{color:#fff}.nav-item.active .nav-btn .icon{color:#2b1b4a}
-.indicator{position:absolute;z-index:20;top:-28px;width:70px;height:70px;border-radius:50%;background:#fff;box-shadow:0 5px 18px rgba(0,0,0,.28);transition:left .45s cubic-bezier(.5,1.25,.35,1)}
-.notch{position:absolute;top:0;width:96px;height:26px;background:var(--nav);z-index:10;transition:left .45s cubic-bezier(.5,1.25,.35,1)}
-@media(max-width:700px){.main{padding:62px 14px 125px}.hero{padding-top:5px}.products{grid-template-columns:1fr}.product-image{height:250px}.product-body{padding:24px}}
-@media(min-width:701px){.products .product-card:first-child{grid-column:1/-1}.products .product-card:first-child .product-image{height:320px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEZ - Loading-page-1</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d0514;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+        }
+
+        .loading-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(circle at center, #260f42 0%, #0d0514 100%);
+        }
+
+        .spinner {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .core {
+            width: 44px;
+            height: 44px;
+            background: #9d4edd;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #9d4edd, 0 0 40px #7b2cbf;
+            animation: pulse 1.5s ease-in-out infinite alternate;
+            z-index: 10;
+        }
+
+        .orbit-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: spin 4s linear infinite;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top-color: #c77dff;
+            border-right-color: #9d4edd;
+            border-radius: 50%;
+            animation: spin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        .orbit-ring:nth-child(2) {
+            width: 75%;
+            height: 75%;
+            top: 12.5%;
+            left: 12.5%;
+            border-width: 2px;
+            border-top-color: #e0aaff;
+            border-right-color: transparent;
+            border-left-color: #7b2cbf;
+            border-bottom-color: #5a189a;
+            animation-direction: reverse;
+            animation-duration: 3s;
+        }
+
+        .orbit-ring:nth-child(3) {
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+            border-width: 2px;
+            border-top-color: transparent;
+            border-right-color: #e0aaff;
+            border-left-color: transparent;
+            border-bottom-color: #9d4edd;
+            animation-duration: 1.5s;
+        }
+
+        .loading-text {
+            margin-top: 48px;
+            color: #e0aaff;
+            font-size: 1.1rem;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            font-weight: 600;
+            background: linear-gradient(90deg, #5a189a, #e0aaff, #5a189a);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 2s linear infinite;
+            padding-left: 0.6em;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.85);
+                opacity: 0.8;
+                box-shadow: 0 0 15px #7b2cbf;
+            }
+
+            100% {
+                transform: scale(1.15);
+                opacity: 1;
+                box-shadow: 0 0 35px #9d4edd, 0 0 60px #c77dff;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .spinner {
+                width: 110px;
+                height: 110px;
+            }
+
+            .core {
+                width: 36px;
+                height: 36px;
+            }
+
+            .loading-text {
+                font-size: 0.95rem;
+                letter-spacing: 0.4em;
+                margin-top: 36px;
+                padding-left: 0.4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .spinner {
+                width: 90px;
+                height: 90px;
+            }
+
+            .core {
+                width: 28px;
+                height: 28px;
+            }
+
+            .loading-text {
+                font-size: 0.85rem;
+                letter-spacing: 0.3em;
+                margin-top: 32px;
+                padding-left: 0.3em;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<main class="main">
-<div class="content">
-<section class="hero">
-<h1 class="title">Produk</h1>
-<p class="subtitle">Sesuai konsep Product Cards Feza Academy</p>
-</section>
-<section class="products">
-
-<article class="product-card">
-<span class="badge">−25%</span>
-<div class="product-image"><img src="https://files.catbox.moe/a373tc.jpg" alt="Wireless Keyboard"></div>
-<div class="product-body">
-<div class="category">KEYBOARDS</div>
-<h2 class="product-name">Wireless Keyboard</h2>
-<div class="rating"><span class="stars">★★★★☆</span><span class="rating-text">4.8 (2,340)</span></div>
-<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, neque nobis quibusdam quasi eaque.</p>
-<div class="price-row"><span class="price">$149</span><span class="old-price">$199</span><span class="save">Save $50</span></div>
-<a class="wa-btn" href="https://wa.me/6282219566685?text=Halo%20Vinz%2C%20saya%20tertarik%20dengan%20produk%20Wireless%20Keyboard" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>Pesan via WhatsApp</a>
-<div class="features"><span><i class="fas fa-truck"></i> Free Shipping</span><span><i class="fas fa-rotate-left"></i> 30-Day Returns</span><span><i class="fas fa-check"></i> In Stock</span></div>
-</div>
-</article>
-
-<article class="product-card">
-<span class="badge new">NEW</span>
-<div class="product-image"><img src="https://files.catbox.moe/a373tc.jpg" alt="Vinz Space Access"></div>
-<div class="product-body">
-<div class="category">DIGITAL</div>
-<h2 class="product-name">Vinz Space Access</h2>
-<div class="rating"><span class="stars">★★★★★</span><span class="rating-text">5.0 (128)</span></div>
-<p class="description">Produk digital dengan tampilan premium dan akses cepat melalui Vinz Space.</p>
-<div class="price-row"><span class="price">$99</span><span class="old-price">$129</span><span class="save">Save $30</span></div>
-<a class="wa-btn" href="https://wa.me/6282219566685?text=Halo%20Vinz%2C%20saya%20tertarik%20dengan%20Vinz%20Space%20Access" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>Pesan via WhatsApp</a>
-<div class="features"><span><i class="fas fa-bolt"></i> Instant</span><span><i class="fas fa-shield-halved"></i> Secure</span><span><i class="fas fa-check"></i> Available</span></div>
-</div>
-</article>
-
-</section>
-</div>
-</main>
-
-<div class="liquid-wrapper">
-<nav class="liquid-nav" id="liquidNav">
-<div class="notch" id="notch"></div><div class="indicator" id="indicator"></div>
-<ul class="nav-list">
-<li class="nav-item"><a href="index.html" class="nav-btn"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="label">Home</span></a></li>
-<li class="nav-item active"><a href="produk.html" class="nav-btn"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="label">Produk</span></a></li>
-</ul>
-</nav>
-</div>
-
-<script>
-const nav=document.getElementById('liquidNav'),items=[...document.querySelectorAll('.nav-item')],indicator=document.getElementById('indicator'),notch=document.getElementById('notch');
-function updateIndicator(){const a=document.querySelector('.nav-item.active');if(!a)return;const nr=nav.getBoundingClientRect(),ir=a.getBoundingClientRect(),c=ir.left-nr.left+ir.width/2;indicator.style.left=(c-35)+'px';notch.style.left=(c-48)+'px'}
-window.addEventListener('resize',updateIndicator);window.addEventListener('load',updateIndicator);updateIndicator();
-</script>
+    <div class="loading-wrapper">
+        <div class="spinner">
+            <div class="orbit-container">
+                <div class="orbit-ring"></div>
+                <div class="orbit-ring"></div>
+                <div class="orbit-ring"></div>
+            </div>
+            <div class="core"></div>
+        </div>
+        <div class="loading-text">Loading...</div>
+    </div>
 </body>
-</html>
+
+  </html>
